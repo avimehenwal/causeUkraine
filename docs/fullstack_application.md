@@ -1,0 +1,7 @@
+# Fullstack Applicatio
+
+- dynamic routes
+- add ORM to deal with DAL layer
+
+NPM - Manages packages but doesn't make life easy executing any.
+NPX - A tool for executing Node packages.
