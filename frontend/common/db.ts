@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
+// prevention fash-refresh exhausting your database connection limit
 declare global {
   // allow global `var` declarations
   // eslint-disable-next-line no-var

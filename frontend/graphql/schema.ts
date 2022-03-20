@@ -8,7 +8,16 @@ export const typeDefs = gql`
     author: String
   }
 
+  type link {
+    id: String
+    createdAt: String
+    updatedAt: String
+    url: String
+    anchorText: String
+  }
+
   type Query {
     books: [Book]
+    links: [link]
   }
 `;
