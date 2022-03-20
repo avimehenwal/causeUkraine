@@ -17,4 +17,9 @@ using types
 how to support multi-lingual content with Prisma.
 How to store a text-field in multiple languages?
 
+### Typescript
+
+declare is used to tell the compiler "this thing (usually a variable) exists already,
+and therefore can be referenced by other code, also there is no need to compile this statement into any JavaScript".
+
 
