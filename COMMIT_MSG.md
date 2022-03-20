@@ -1,1 +1,0 @@
-feat(orm): add prisma as dev dependency
