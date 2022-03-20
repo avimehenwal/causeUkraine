@@ -3,9 +3,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { prisma } from '../common/db'
+import { gql, useQuery } from '@apollo/client';
+import { ALL_LINKS } from '../graphql/queries'
 
 const Home: NextPage = (props) => {
   // console.log(props.links)
+  const { loading, error, data } = useQuery(ALL_LINKS);
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
 
   return (
     <div className={styles.container}>
@@ -20,9 +26,19 @@ const Home: NextPage = (props) => {
           Welcome {props.host}
         </h1>
 
-        {props.links.map((item) => (
+        <ul>
+          {data.GetAllLinks.map(link => (
+            <li key={link.id}>
+              <a href={link.url} target="_blank" rel='noreferrer'>
+                {link.anchorText}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* {props.links.map((item) => (
           <pre key={item.id}>{JSON.stringify(item, null, 2)}</pre>
-        ))}
+        ))} */}
 
       </main>
 
@@ -32,23 +48,23 @@ const Home: NextPage = (props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const links = await prisma.link.findMany()
+// export const getStaticProps: GetStaticProps = async () => {
+//   const links = await prisma.link.findMany()
 
-  links.map(x => {
-    x.createdAt = Math.floor(x.createdAt / 1000);
-    x.updatedAt = Math.floor(x.updatedAt / 1000);
-    return x;
-  })
+//   links.map(x => {
+//     x.createdAt = Math.floor(x.createdAt / 1000);
+//     x.updatedAt = Math.floor(x.updatedAt / 1000);
+//     return x;
+//   })
 
-  console.log(links);
+//   console.log(links);
 
-  return {
-    props: {
-      host: "avi mehenwal",
-      links,
-    },
-  }
-}
+//   return {
+//     props: {
+//       host: "avi mehenwal",
+//       links,
+//     },
+//   }
+// }
 
 export default Home
