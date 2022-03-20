@@ -10,14 +10,14 @@ export const typeDefs = gql`
 
   type link {
     id: String
-    createdAt: String
-    updatedAt: String
     url: String
     anchorText: String
+    createdAt: String
+    updatedAt: String
   }
 
   type Query {
-    books: [Book]
-    links: [link]
+    GetAllBooks: [Book]
+    GetAllLinks: [link]
   }
 `;

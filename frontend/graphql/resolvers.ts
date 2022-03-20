@@ -17,7 +17,7 @@ export const books = [
 // arguments for resolvers: _parent, args, context
 export const resolvers: any = {
   Query: {
-    books: () => books,
-    links: async (_parent, args, context) => await context.prisma.link.findMany()
+    GetAllBooks: () => books,
+    GetAllLinks: async (_parent, args, context) => await context.prisma.link.findMany()
   },
 };
