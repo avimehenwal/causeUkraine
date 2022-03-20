@@ -3,10 +3,11 @@ import Cors from 'micro-cors';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { resolvers } from '../../graphql/resolvers';
 import { typeDefs } from '../../graphql/schema';
+import { createContext } from '../../graphql/context';
 
 
 // The ApolloServer constructor requires two parameters: your schema definition and your set of resolvers.
-const graphqlServer = new ApolloServer({ typeDefs, resolvers });
+const graphqlServer = new ApolloServer({ typeDefs, resolvers, context:createContext });
 const startGraphqlServer = graphqlServer.start()
 const cors = Cors()
 

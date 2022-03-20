@@ -13,11 +13,11 @@ export const books = [
 ];
 
 
-// Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
+// Resolvers define the technique for fetching the types defined in the schema
+// arguments for resolvers: _parent, args, context
 export const resolvers: any = {
   Query: {
     books: () => books,
-    links: async () => await prisma.link.findMany()
+    links: async (_parent, args, context) => await context.prisma.link.findMany()
   },
 };
