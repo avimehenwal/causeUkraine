@@ -22,4 +22,40 @@ How to store a text-field in multiple languages?
 declare is used to tell the compiler "this thing (usually a variable) exists already,
 and therefore can be referenced by other code, also there is no need to compile this statement into any JavaScript".
 
+## GraphQL
 
+```
+├── pages
+|  ├── api
+|  |  ├── graphql.js
+|  |  ├── resolvers
+|  |  |  └── index.js
+|  |  └── schemas
+|  |     └── index.js
+|  └── index.js
+├── package.json
+└── yarn.lock
+```
+
+https://www.smashingmagazine.com/2020/10/graphql-server-next-javascript-api-routes/
+
+- use `apollo-server-micro` with nextjs
+
+---
+
+feat(orm): fetch data in component from prisma
+
+best-practise for database connections.
+
+## DEV envoronments have fast-refresh, can exhaust db connection pools
+
+so we add a new property to global js object
+https://www.prisma.io/docs/support/help-articles/nextjs-prisma-client-dev-practices
+
+## getServerSideProps Fails to Serialize Date Object
+
+https://github.com/vercel/next.js/issues/13209
+
+## cors issues with hosted graphQL studio, network error
+
+micro-cors

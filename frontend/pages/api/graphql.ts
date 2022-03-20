@@ -1,40 +1,9 @@
-import { ApolloServer, gql } from 'apollo-server-micro';
+import { ApolloServer } from 'apollo-server-micro';
 import Cors from 'micro-cors';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { resolvers } from '../../graphql/resolvers';
+import { typeDefs } from '../../graphql/schema';
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
-
-  type Query {
-    books: [Book]
-  }
-`;
-
-// data can come from ORM
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-  },
-];
-
-// Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
-const resolvers: any = {
-  Query: {
-    books: () => books,
-  },
-};
 
 // The ApolloServer constructor requires two parameters: your schema definition and your set of resolvers.
 const graphqlServer = new ApolloServer({ typeDefs, resolvers });
