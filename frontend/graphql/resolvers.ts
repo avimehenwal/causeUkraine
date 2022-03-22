@@ -1,4 +1,5 @@
 import { prisma } from "../common/db";
+import { Context } from './context'
 
 // data can come from ORM
 export const books = [
@@ -18,6 +19,6 @@ export const books = [
 export const resolvers: any = {
   Query: {
     GetAllBooks: () => books,
-    GetAllLinks: async (_parent, args, context) => await context.prisma.link.findMany()
+    GetAllLinks: async (_parent: undefined, args: undefined, context: Context) => await context.prisma.link.findMany()
   },
 };

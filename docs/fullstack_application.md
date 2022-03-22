@@ -59,3 +59,7 @@ https://github.com/vercel/next.js/issues/13209
 ## cors issues with hosted graphQL studio, network error
 
 micro-cors
+
+### TODO
+
+- [ ] [ability to switch db based on env, planetscale for prod and sqlite for local](https://github.com/prisma/prisma/issues/2443)

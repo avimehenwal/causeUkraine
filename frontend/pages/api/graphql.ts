@@ -4,14 +4,15 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { resolvers } from '../../graphql/resolvers';
 import { typeDefs } from '../../graphql/schema';
 import { createContext } from '../../graphql/context';
-
+import { ServerResponse } from 'http';
+// import { RequestHandler }
 
 // The ApolloServer constructor requires two parameters: your schema definition and your set of resolvers.
-const graphqlServer = new ApolloServer({ typeDefs, resolvers, context:createContext });
+const graphqlServer = new ApolloServer({ typeDefs, resolvers, context: createContext });
 const startGraphqlServer = graphqlServer.start()
 const cors = Cors()
 
-export default cors(async function handler(req: NextApiRequest, res: NextApiResponse | boolean) {
+export default cors(async function handler(req: RequestHandler, res: ServerResponse) {
   // res.setHeader("Access-Control-Allow-Origin", "*")
   // res.setHeader("access-control-allow-methods", "POST")
 
