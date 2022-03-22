@@ -1,17 +1,24 @@
-import type { NextPage, GetStaticProps } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { prisma } from '../common/db'
-import { gql, useQuery } from '@apollo/client';
 import { ALL_LINKS } from '../graphql/queries'
+import styles from '../styles/Home.module.css'
+import { apolloClient } from './_app'
 
-const Home: NextPage = (props) => {
+interface Links {
+  id: number;
+  anchorText: string;
+  url: string
+}
+interface HomeProps {
+  host: string;
+  links: Links[]
+
+}
+const Home: NextPage<HomeProps> = ({ host, links }) => {
   // console.log(props.links)
-  const { loading, error, data } = useQuery(ALL_LINKS);
-
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  // const { loading, error, data } = useQuery(ALL_LINKS);
+  // if (loading) return 'Loading...';
+  // if (error) return `Error! ${error.message}`;
 
   return (
     <div className={styles.container}>
@@ -23,11 +30,11 @@ const Home: NextPage = (props) => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome {props.host}
+          Welcome {host}
         </h1>
 
         <ul>
-          {data.GetAllLinks.map(link => (
+          {links && links?.map(link => (
             <li key={link.id}>
               <a href={link.url} target="_blank" rel='noreferrer'>
                 {link.anchorText}
@@ -48,23 +55,15 @@ const Home: NextPage = (props) => {
   )
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const links = await prisma.link.findMany()
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await apolloClient.query({ query: ALL_LINKS })
 
-//   links.map(x => {
-//     x.createdAt = Math.floor(x.createdAt / 1000);
-//     x.updatedAt = Math.floor(x.updatedAt / 1000);
-//     return x;
-//   })
-
-//   console.log(links);
-
-//   return {
-//     props: {
-//       host: "avi mehenwal",
-//       links,
-//     },
-//   }
-// }
+  return {
+    props: {
+      links: data.GetAllLinks,
+      host: "Avi Mehenwal,"
+    },
+  }
+}
 
 export default Home
