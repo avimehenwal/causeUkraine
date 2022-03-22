@@ -6,7 +6,7 @@ import React from 'react';
 import '../styles/globals.css';
 
 
-const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   uri: 'http://localhost:3000/api/graphql',
   cache: new InMemoryCache()
 });
@@ -14,7 +14,7 @@ const client = new ApolloClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />
     </ApolloProvider>
   )

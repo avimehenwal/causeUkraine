@@ -63,3 +63,5 @@ micro-cors
 ### TODO
 
 - [ ] [ability to switch db based on env, planetscale for prod and sqlite for local](https://github.com/prisma/prisma/issues/2443)
+- [ ] fullstack application with graphQL and nextjs needs nodejs backend, getStaticProps is not enough
+- [ ] https://github.com/2color/next-prisma-data-proxy

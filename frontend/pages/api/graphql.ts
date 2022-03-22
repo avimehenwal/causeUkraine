@@ -1,21 +1,27 @@
 import { ApolloServer } from 'apollo-server-micro';
+import { MicroRequest } from 'apollo-server-micro/dist/types';
+import { ServerResponse } from 'http';
 import Cors from 'micro-cors';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { createContext } from '../../graphql/context';
 import { resolvers } from '../../graphql/resolvers';
 import { typeDefs } from '../../graphql/schema';
-import { createContext } from '../../graphql/context';
-import { ServerResponse } from 'http';
-// import { RequestHandler }
 
 // The ApolloServer constructor requires two parameters: your schema definition and your set of resolvers.
-const graphqlServer = new ApolloServer({ typeDefs, resolvers, context: createContext });
+const graphqlServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: createContext,
+  introspection: true,
+});
+
 const startGraphqlServer = graphqlServer.start()
 const cors = Cors()
 
-export default cors(async function handler(req: RequestHandler, res: ServerResponse) {
+export default cors(async function handler(req: MicroRequest, res: ServerResponse) {
   // res.setHeader("Access-Control-Allow-Origin", "*")
   // res.setHeader("access-control-allow-methods", "POST")
 
+  // only want to process POST requests technically
   if (req.method === 'OPTIONS') {
     res.end()
     return false
