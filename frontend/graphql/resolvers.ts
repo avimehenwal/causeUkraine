@@ -19,6 +19,7 @@ export const books = [
 export const resolvers: any = {
   Query: {
     GetAllBooks: () => books,
-    GetAllLinks: async (_parent: undefined, args: undefined, context: Context) => await context.prisma.link.findMany()
+    GetAllLinks: async (_parent: undefined, args: undefined, context: Context) => await context.prisma.link.findMany(),
+    GetAllImages: async (_parent: undefined, args: undefined, context: Context) => await context.prisma.image.findMany(),
   },
 };

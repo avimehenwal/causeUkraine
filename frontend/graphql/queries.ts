@@ -9,3 +9,15 @@ export const ALL_LINKS = gql`
     }
   }
 `;
+
+export const GET_ALL_IMAGES = gql`
+  query getAllImages {
+    GetAllImages {
+      id
+      name
+      description
+      url
+      tags
+    }
+  }
+`;

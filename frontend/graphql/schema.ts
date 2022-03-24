@@ -16,8 +16,19 @@ export const typeDefs = gql`
     updatedAt: String
   }
 
+  type Image {
+    id: String
+    url: String
+    name: String
+    description: String
+    tagId: String!
+    createdAt: String
+    updatedAt: String
+  }
+
   type Query {
     GetAllBooks: [Book]
     GetAllLinks: [link]
+    GetAllImages: [Image]
   }
 `;
