@@ -72,6 +72,8 @@ micro-cors
 2. Migration workflows with `db push`
 3. Indices on `foreign keys`
 
+planetscale figures out its own Migration
+
 ```shell
 pscale branch list $DB
 
