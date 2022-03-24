@@ -8,6 +8,10 @@ const nextConfig = {
     // !! WARN !!
     // ignoreBuildErrors: true,
   },
+  // allow domains for images
+  images: {
+    domains: ['cause-ukraine.vercel.app'],
+  },
 }
 
 module.exports = nextConfig

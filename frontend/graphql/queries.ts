@@ -15,9 +15,8 @@ export const GET_ALL_IMAGES = gql`
     GetAllImages {
       id
       name
-      description
       url
-      tags
+      description
     }
   }
 `;

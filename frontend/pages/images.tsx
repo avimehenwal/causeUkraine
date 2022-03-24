@@ -3,13 +3,14 @@ import Head from 'next/head'
 import { ALL_LINKS, GET_ALL_IMAGES } from '../graphql/queries'
 import styles from '../styles/Home.module.css'
 import { apolloClient } from './_app'
+import Image from 'next/image'
 
 interface Image {
-  id: String;
+  id?: String;
   url: String;
-  name: String;
-  description: String;
-  tagId: String;
+  name?: String;
+  description?: String;
+  tagId?: String;
 }
 
 interface ImagesPageProps {
@@ -27,7 +28,15 @@ const ImagesPage: NextPage<ImagesPageProps> = ({ images, data }) => {
         </h1>
 
         <p>{data}</p>
-        <pre>{JSON.stringify(images, null, 2)}</pre>
+        {images.map((image) =>
+          <Image
+            key={image.id}
+            src={image.url}
+            alt="Picture of the author"
+            width={500}
+            height={500}
+          />
+        )}
       </main>
 
       <footer className={styles.footer}>
