@@ -6,11 +6,11 @@ import { apolloClient } from './_app'
 import Image from 'next/image'
 
 interface Image {
-  id?: String;
-  url: String;
-  name?: String;
-  description?: String;
-  tagId?: String;
+  id?: string;
+  url: string;
+  name?: string;
+  description?: string;
+  tagId?: string;
 }
 
 interface ImagesPageProps {
