@@ -10,7 +10,7 @@ const nextConfig = {
   },
   // allow domains for images
   images: {
-    domains: ['cause-ukraine.vercel.app'],
+    domains: ['cause-ukraine.vercel.app', 'cause-ukraine-git-main-avimehenwal.vercel.app', 'cause-ukraine-avimehenwal.vercel.app'],
   },
 }
 
