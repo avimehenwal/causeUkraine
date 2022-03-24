@@ -65,3 +65,16 @@ micro-cors
 - [ ] [ability to switch db based on env, planetscale for prod and sqlite for local](https://github.com/prisma/prisma/issues/2443)
 - [ ] fullstack application with graphQL and nextjs needs nodejs backend, getStaticProps is not enough
 - [ ] https://github.com/2color/next-prisma-data-proxy
+
+## Prisma + PlanetScale DB best practises
+
+1. Referential Integrity
+2. Migration workflows with `db push`
+3. Indices on `foreign keys`
+
+```shell
+pscale branch list $DB
+
+# no need to create password
+pscale connect ${DB} ${BRANCH}
+```
